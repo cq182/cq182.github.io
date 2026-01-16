@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于 Nano-Banana-Pro 的学术论文架构图生成全流程</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <style>
+        :root { --pico-font-size: 100%; }
+        header { padding-bottom: 1rem; border-bottom: 1px solid var(--pico-muted-border-color); }
+        /* 让图片默认居中且自适应 */
+        img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 2rem auto; }
+        /* 代码块样式微调 */
+        pre { padding: 1rem; border-radius: 8px; background: var(--pico-card-background-color); }
+        /* 返回按钮区域 */
+        .back-nav { margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    
+    <main class="container">
+
+        <nav class="back-nav">
+            <ul>
+                <li><a href="../index.html" class="secondary">← 返回首页</a></li>
+            </ul>
+        </nav>
+
+        <header>
+            <h1 style="margin-bottom: 0.5rem;">基于 Nano-Banana-Pro 的学术论文架构图生成全流程</h1>
+            <small style="color: var(--pico-muted-color);">
+                发布于 2024-05-21 • 分类：<span style="color: var(--pico-primary);">技术教程</span>
+            </small>
+        </header>
+
+        <article>
+            <p>
+                这里是引言部分。你可以简单介绍一下什么是 <strong>Nano-Banana-Pro</strong>，以及为什么我们需要用它来生成学术论文的架构图。Pico.css 会自动处理段落间距。
+            </p>
+
+            <h2>1. 环境准备</h2>
+            <p>在开始之前，请确保你已经安装了以下依赖：</p>
+            <ul>
+                <li>Python 3.8+</li>
+                <li>Nano-Banana SDK v2.0</li>
+                <li>Graphviz (用于渲染)</li>
+            </ul>
+
+            <h2>2. 初始化项目</h2>
+            <p>首先，我们需要在终端中运行初始化命令：</p>
+            
+            <pre><code># 克隆仓库
+git clone https://github.com/your-repo/nano-banana-pro.git
+
+# 进入目录
+cd nano-banana-pro
+
+# 安装依赖
+pip install -r requirements.txt</code></pre>
+
+            <h2>3. 架构图生成原理</h2>
+            <p>核心算法流程如下所示。该流程利用了 Nano 核心的轻量化特性：</p>
+            
+            <figure>
+                <img src="https://placehold.co/800x400/222/FFF?text=Architecture+Diagram+Placeholder" alt="架构流程图">
+                <figcaption style="text-align: center; color: var(--pico-muted-color); font-size: 0.8em;">
+                    图 1：Nano-Banana-Pro 处理流程
+                </figcaption>
+            </figure>
+
+            <h2>4. 最终输出</h2>
+            <p>
+                执行脚本后，你将在 <code>/output</code> 目录看到生成的矢量图 PDF。这对于插入 LaTeX 论文非常方便。
+            </p>
+
+            <blockquote>
+                <strong>注意：</strong> 如果遇到内存溢出问题，请尝试减少 batch_size 参数。
+            </blockquote>
+
+        </article>
+
+        <footer style="margin-top: 3rem; border-top: 1px solid var(--pico-muted-border-color); padding-top: 1rem;">
+            <small>
+                &copy; 2024 CQ182. <a href="#">回到顶部</a>
+            </small>
+        </footer>
+
+    </main>
+</body>
+</html>
