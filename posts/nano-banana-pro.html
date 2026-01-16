@@ -8,64 +8,110 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
    <style>
-    /* 1. 全局与布局设置 */
-    :root { --pico-font-size: 100%; }
-    main.container { max-width: 1200px; } /* 限制阅读宽度 */
+    /* =========================================
+       1. 全局布局与背景 (卡片式设计)
+       ========================================= */
+    :root {
+        --pico-font-size: 100%;
+    }
 
-    /* 2. 图片优化 */
+    /* 页面背景设为浅灰色 */
+    body {
+        background-color: #f2f3f5; 
+        color: #373a3c; /* 确保正文文字也是深色，高对比度 */
+    }
+
+    /* 主内容块设为白色卡片 */
+    main.container {
+        background-color: #ffffff;
+        max-width: 1000px; /* 用户指定宽度 */
+        margin-top: 2rem;  /* 让卡片和顶部有点距离 */
+        margin-bottom: 2rem;
+        padding: 3rem;     /* 卡片内部留白 */
+        border-radius: 8px; /* 卡片圆角 */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* 添加轻微阴影，让白色卡片浮起来 */
+    }
+
+    /* =========================================
+       2. 图片与图注优化 (用户指定参数)
+       ========================================= */
     img {
         max-width: 90%;
         max-height: 500px;
         width: auto; height: auto;
         display: block;
         margin: 2rem auto 1rem auto;
-        border-radius: 8px;
+        border-radius: 6px;
     }
-    figure { margin: 0 0 2rem 0; }
+
+    figure {
+        margin: 0 0 2rem 0; /* 用户指定: 底部间距 2rem */
+    }
+
     figcaption {
         text-align: center;
-        color: var(--pico-muted-color);
+        color: #6c757d; /* 中灰色，保证可读性 */
         font-size: 0.85em;
-        margin-top: 0.3rem;
+        margin-top: 0.3rem; /* 用户指定: 顶部间距 0.3rem */
     }
 
-    /* 3. 代码块 (Pre) 深色主题与复制按钮容器 */
+    /* =========================================
+       3. 代码块优化 (浅色高对比度)
+       ========================================= */
     pre {
-        background-color: #232425; /* 深灰色背景 */
-        color: #f8f8f2;            /* 浅色代码文字 */
-        padding: 2.5rem 1rem 1rem 1rem; /* 顶部留出空间放按钮 */
-        border-radius: 8px;
-        position: relative;        /* 让按钮可以绝对定位 */
-        overflow-x: auto;          /* 代码太长可以横向滚动 */
-        border: 1px solid #333;    /* 微妙的边框 */
+        /* 背景变很浅的灰色 */
+        background-color: #f8f9fa; 
+        /* 文字变成近乎纯黑，拉高对比度 */
+        color: #212529;            
+        
+        padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        border-radius: 6px;
+        position: relative;
+        overflow-x: auto;
+        /* 加一个浅色边框，让代码块在白色背景上更清晰 */
+        border: 1px solid #e9ecef; 
+        font-family: Consolas, "Courier New", monospace; /* 优化代码字体 */
+        font-size: 0.9em;
     }
 
-    /* 4. 复制按钮样式 */
+    /* 代码块中的复制按钮样式调整 */
     .copy-btn {
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
-        background-color: #3e4042;
-        color: #fff;
+        /* 按钮背景改为深灰色，以便在浅色代码块上显眼 */
+        background-color: #e2e6ea; 
+        color: #495057;
         border: none;
         padding: 4px 10px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         border-radius: 4px;
         cursor: pointer;
-        opacity: 0.8;
-        transition: opacity 0.2s;
-        /* 重置 Pico.css 可能对 button 的默认影响 */
+        opacity: 1;
+        transition: all 0.2s;
         margin-bottom: 0;
         width: auto;
+        font-weight: bold;
     }
     .copy-btn:hover {
-        opacity: 1;
-        background-color: #505255;
+        background-color: #d1d7dd;
+        color: #000;
     }
 
-    /* 其他基础样式 */
-    header { padding-bottom: 1.5rem; border-bottom: 1px solid var(--pico-muted-border-color); margin-bottom: 2rem; }
-    .back-nav { margin-bottom: 2rem; }
+    /* =========================================
+       4. 其他细节调整
+       ========================================= */
+    header {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee; /* 分割线变浅 */
+        margin-bottom: 2rem;
+    }
+    .back-nav { margin-bottom: 1.5rem; }
+    
+    /* 链接颜色优化，深蓝更适合学术/技术 */
+    a { text-decoration: none; color: #0d6efd; }
+    a:hover { text-decoration: underline; }
+    a.secondary { color: #6c757d; }
 </style>
     
 </head>
@@ -153,5 +199,43 @@ pip install -r requirements.txt</code></pre>
         
 
     </main>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 找到所有的 <pre> 标签
+        const preBlocks = document.querySelectorAll('pre');
+
+        preBlocks.forEach(pre => {
+            // 1. 创建按钮
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerText = '复制';
+
+            // 2. 添加点击事件
+            button.addEventListener('click', () => {
+                // 获取 pre 内部 code 的文本
+                const code = pre.querySelector('code').innerText;
+                
+                // 执行复制操作
+                navigator.clipboard.writeText(code).then(() => {
+                    // 复制成功后的反馈
+                    button.innerText = '已复制!';
+                    
+                    // 2秒后恢复原状
+                    setTimeout(() => {
+                        button.innerText = '复制';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    button.innerText = '失败';
+                });
+            });
+
+            // 3. 将按钮添加到代码块中
+            pre.appendChild(button);
+        });
+    });
+</script>
+
+
 </body>
 </html>
