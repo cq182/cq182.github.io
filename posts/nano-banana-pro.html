@@ -64,7 +64,7 @@
         /* 文字变成近乎纯黑，拉高对比度 */
         color: #212529;            
         
-        padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        padding: 2rem 1rem 1rem 1rem;
         border-radius: 6px;
         position: relative;
         overflow-x: auto;
@@ -128,7 +128,7 @@
         <header>
             <h1 style="margin-bottom: 0.5rem;">基于 Nano-Banana-Pro 的学术论文架构图生成全流程</h1>
             <small style="color: var(--pico-muted-color);">
-                发布于 2026-01-16 • 分类：<span style="color: var(--pico-primary);">技术教程</span>
+                更新于 2026-01-16 
             </small>
         </header>
 
@@ -208,7 +208,7 @@ pip install -r requirements.txt</code></pre>
             // 1. 创建按钮
             const button = document.createElement('button');
             button.className = 'copy-btn';
-            button.innerText = '复制';
+            button.innerText = 'copy';
 
             // 2. 添加点击事件
             button.addEventListener('click', () => {
@@ -222,7 +222,7 @@ pip install -r requirements.txt</code></pre>
                     
                     // 2秒后恢复原状
                     setTimeout(() => {
-                        button.innerText = '复制';
+                        button.innerText = 'copy';
                     }, 2000);
                 }).catch(err => {
                     console.error('复制失败:', err);
