@@ -7,16 +7,78 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-    <style>
-        :root { --pico-font-size: 100%; }
-        header { padding-bottom: 1rem; border-bottom: 1px solid var(--pico-muted-border-color); }
-        /* 让图片默认居中且自适应 */
-        img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 2rem auto; }
-        /* 代码块样式微调 */
-        pre { padding: 1rem; border-radius: 8px; background: var(--pico-card-background-color); }
-        /* 返回按钮区域 */
-        .back-nav { margin-bottom: 2rem; }
-    </style>
+   <style>
+    /* 全局设置 */
+    :root {
+        --pico-font-size: 100%;
+    }
+
+    /* 1. 解决 "博客太宽" 的问题 */
+    /* 我们强制将主体内容限制在 800px 以内，这是最舒适的阅读宽度 */
+    main.container {
+        max-width: 800px; 
+    }
+
+    /* 2. 解决 "图片过大" 的问题 */
+    img {
+        /* 限制图片最大只能占容器的 90%，留出呼吸感 */
+        max-width: 90%; 
+        /* 限制图片最大高度，防止长竖图占满好几屏 */
+        max-height: 500px; 
+        /* 保持图片原始比例，不变形 */
+        width: auto; 
+        height: auto;
+        /* 让图片在页面中水平居中 */
+        display: block;
+        margin: 2rem auto 1rem auto; /* 上边距2rem，左右自动居中，下边距1rem */
+        border-radius: 8px; /* 给图片加一点圆角，更精致 */
+        /* 只有当图片背景是透明时，添加一点浅色背景（可选，视情况而定） */
+        /* background: var(--pico-card-background-color); */
+    }
+
+    /* 3. 针对图注 (figcaption) 的优化 */
+    figure {
+        margin: 0; /* 清除默认边距 */
+        margin-bottom: 2rem; /* 图片组到底部内容的距离 */
+    }
+    figcaption {
+        text-align: center;
+        color: var(--pico-muted-color);
+        font-size: 0.85em; /* 字号调小 */
+        margin-top: 0.3rem;
+    }
+
+    /* 以下是之前的其他样式，保持不变 */
+    header {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        margin-bottom: 2rem;
+    }
+    .post-item {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border-radius: var(--pico-border-radius);
+        background-color: var(--pico-card-background-color);
+        box-shadow: var(--pico-card-box-shadow);
+    }
+    .post-date {
+        font-size: 0.8em;
+        color: var(--pico-muted-color);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .tag {
+        font-size: 0.75em;
+        background: var(--pico-primary-background);
+        color: var(--pico-primary-inverse);
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+    .back-nav { margin-bottom: 2rem; }
+    pre { padding: 1rem; border-radius: 8px; background: var(--pico-card-background-color); }
+</style>
 </head>
 <body>
     
@@ -41,21 +103,23 @@
             </p>
             <figure>
                 <img src="../image/AIAYN-a.png" alt="Attention Is All You Need">
-            
-                <figcaption style="text-align: center; color: var(--pico-muted-color); font-size: 0.9em; margin-top: 0.5rem;">
-                    这里是图注文字，字号已经设置得更小了
+                <figcaption>
+                    Attention Is All You Need
                 </figcaption>
             </figure>
             
             
 
-            <h2>1. 环境准备</h2>
-            <p>在开始之前，请确保你已经安装了以下依赖：</p>
-            <ul>
+            <h2>步骤一：逻辑构建 (The Architect)</h2>
+            <p><strong>目标</strong>：利用逻辑推理能力强的 LLM（如 Gemini 3 Pro, GPT-5, Claude 4.5）将你的论文内容转化为一份**[VISUAL SCHEMA]**。</p>
+            <p><strong>操作指南</strong>： 请复制下方的 Prompt，并将你的论文摘要或方法章节的内容附在最后。这一步的核心在于将抽象的算法逻辑转化为绘图模型能够理解的“强硬”物理描述。</p>
+            
+            <!--ul>
+                /* li表示一个重点符号· */
                 <li>Python 3.8+</li>
                 <li>Nano-Banana SDK v2.0</li>
                 <li>Graphviz (用于渲染)</li>
-            </ul>
+            </ul-->
 
             <h2>2. 初始化项目</h2>
             <p>首先，我们需要在终端中运行初始化命令：</p>
