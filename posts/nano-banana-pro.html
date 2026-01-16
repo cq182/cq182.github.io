@@ -8,77 +8,66 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
    <style>
-    /* 全局设置 */
-    :root {
-        --pico-font-size: 100%;
-    }
+    /* 1. 全局与布局设置 */
+    :root { --pico-font-size: 100%; }
+    main.container { max-width: 800px; } /* 限制阅读宽度 */
 
-    /* 1. 解决 "博客太宽" 的问题 */
-    /* 我们强制将主体内容限制在 800px 以内，这是最舒适的阅读宽度 */
-    main.container {
-        max-width: 800px; 
-    }
-
-    /* 2. 解决 "图片过大" 的问题 */
+    /* 2. 图片优化 */
     img {
-        /* 限制图片最大只能占容器的 90%，留出呼吸感 */
-        max-width: 90%; 
-        /* 限制图片最大高度，防止长竖图占满好几屏 */
-        max-height: 500px; 
-        /* 保持图片原始比例，不变形 */
-        width: auto; 
-        height: auto;
-        /* 让图片在页面中水平居中 */
+        max-width: 90%;
+        max-height: 500px;
+        width: auto; height: auto;
         display: block;
-        margin: 2rem auto 1rem auto; /* 上边距2rem，左右自动居中，下边距1rem */
-        border-radius: 8px; /* 给图片加一点圆角，更精致 */
-        /* 只有当图片背景是透明时，添加一点浅色背景（可选，视情况而定） */
-        /* background: var(--pico-card-background-color); */
+        margin: 2rem auto 1rem auto;
+        border-radius: 8px;
     }
-
-    /* 3. 针对图注 (figcaption) 的优化 */
-    figure {
-        margin: 0; /* 清除默认边距 */
-        margin-bottom: 2rem; /* 图片组到底部内容的距离 */
-    }
+    figure { margin: 0 0 2rem 0; }
     figcaption {
         text-align: center;
         color: var(--pico-muted-color);
-        font-size: 0.85em; /* 字号调小 */
+        font-size: 0.85em;
         margin-top: 0.3rem;
     }
 
-    /* 以下是之前的其他样式，保持不变 */
-    header {
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--pico-muted-border-color);
-        margin-bottom: 2rem;
+    /* 3. 代码块 (Pre) 深色主题与复制按钮容器 */
+    pre {
+        background-color: #232425; /* 深灰色背景 */
+        color: #f8f8f2;            /* 浅色代码文字 */
+        padding: 2.5rem 1rem 1rem 1rem; /* 顶部留出空间放按钮 */
+        border-radius: 8px;
+        position: relative;        /* 让按钮可以绝对定位 */
+        overflow-x: auto;          /* 代码太长可以横向滚动 */
+        border: 1px solid #333;    /* 微妙的边框 */
     }
-    .post-item {
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        border-radius: var(--pico-border-radius);
-        background-color: var(--pico-card-background-color);
-        box-shadow: var(--pico-card-box-shadow);
-    }
-    .post-date {
-        font-size: 0.8em;
-        color: var(--pico-muted-color);
-        margin-bottom: 0.5rem;
-        display: block;
-    }
-    .tag {
-        font-size: 0.75em;
-        background: var(--pico-primary-background);
-        color: var(--pico-primary-inverse);
-        padding: 2px 8px;
+
+    /* 4. 复制按钮样式 */
+    .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: #3e4042;
+        color: #fff;
+        border: none;
+        padding: 4px 10px;
+        font-size: 0.8rem;
         border-radius: 4px;
-        text-decoration: none;
-        margin-right: 5px;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+        /* 重置 Pico.css 可能对 button 的默认影响 */
+        margin-bottom: 0;
+        width: auto;
     }
+    .copy-btn:hover {
+        opacity: 1;
+        background-color: #505255;
+    }
+
+    /* 其他基础样式 */
+    header { padding-bottom: 1.5rem; border-bottom: 1px solid var(--pico-muted-border-color); margin-bottom: 2rem; }
     .back-nav { margin-bottom: 2rem; }
-    pre { padding: 1rem; border-radius: 8px; background: var(--pico-card-background-color); }
 </style>
+    
 </head>
 <body>
     
@@ -114,12 +103,7 @@
             <p><strong>目标</strong>：利用逻辑推理能力强的 LLM（如 Gemini 3 Pro, GPT-5, Claude 4.5）将你的论文内容转化为一份**[VISUAL SCHEMA]**。</p>
             <p><strong>操作指南</strong>： 请复制下方的 Prompt，并将你的论文摘要或方法章节的内容附在最后。这一步的核心在于将抽象的算法逻辑转化为绘图模型能够理解的“强硬”物理描述。</p>
             
-            <!--ul>
-                /* li表示一个重点符号· */
-                <li>Python 3.8+</li>
-                <li>Nano-Banana SDK v2.0</li>
-                <li>Graphviz (用于渲染)</li>
-            </ul-->
+            
 
             <h2>2. 初始化项目</h2>
             <p>首先，我们需要在终端中运行初始化命令：</p>
@@ -159,6 +143,14 @@ pip install -r requirements.txt</code></pre>
                 &copy; 2024 CQ182. <a href="#">回到顶部</a>
             </small>
         </footer>
+
+        <!--ul>
+            /* li表示一个重点符号· */
+            <li>Python 3.8+</li>
+            <li>Nano-Banana SDK v2.0</li>
+            <li>Graphviz (用于渲染)</li>
+        </ul-->
+        
 
     </main>
 </body>
