@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KimiChen Blog</title>
+    <meta name="description" content="数字自留地">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
+    <style>
+        :root {
+            --pico-font-size: 100%;
+        }
+        header {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--pico-muted-border-color);
+            margin-bottom: 2rem;
+        }
+        .post-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--pico-border-radius);
+            background-color: var(--pico-card-background-color);
+            box-shadow: var(--pico-card-box-shadow);
+        }
+        .post-date {
+            font-size: 0.8em;
+            color: var(--pico-muted-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .tag {
+            font-size: 0.75em;
+            background: var(--pico-primary-background);
+            color: var(--pico-primary-inverse);
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <main class="container">
+
+        <header>
+            <hgroup>
+                <h1>CQ182 的空间</h1>
+                <p>记录技术、生活与思考 | 保持极简</p>
+            </hgroup>
+            <nav>
+                <ul>
+                    <li><a href="#" class="contrast">首页</a></li>
+                    <li><a href="https://github.com/cq182" target="_blank" class="contrast">GitHub</a></li>
+                    <li><a href="mailto:your-email@example.com" class="contrast">联系我</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="posts">
+            <h2>最新文章</h2>
+
+            <article class="post-item">
+                <span class="post-date">2024-05-20</span>
+                <h3><a href="https://github.com/cq182" target="_blank">这是我的第一篇博客文章标题</a></h3>
+                <p>这是文章的简介部分。你可以在这里写下文章的摘要，吸引读者点击标题阅读全文...</p>
+                <footer>
+                    <span class="tag">生活</span>
+                    <span class="tag">记录</span>
+                </footer>
+            </article>
+
+            <article class="post-item">
+                <span class="post-date">2024-05-18</span>
+                <h3><a href="https://www.google.com" target="_blank">分享一个好用的链接</a></h3>
+                <p>在这个轻量化的博客中，你可以随意添加链接、图片和文字。Pico.css 会自动帮你处理排版。</p>
+                <footer>
+                    <span class="tag">技术</span>
+                </footer>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>
+                &copy; 2024 CQ182. Built with <a href="https://picocss.com">Pico</a>.
+            </small>
+        </footer>
+
+    </main>
+</body>
+</html>
